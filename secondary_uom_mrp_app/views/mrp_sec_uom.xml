@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+	 <!-- add  Secondary UOM,Secondary Qty fields in bom-->
+	<record id="mrp_bom_sec_uom_form_view" model="ir.ui.view">
+		<field name="name">mrp.bom.form</field>
+		<field name="model">mrp.bom</field>
+		<field name="inherit_id" ref="mrp.mrp_bom_form_view"/>
+		<field name="arch" type="xml">
+			<xpath expr="//notebook/page/field[@name='bom_line_ids']/tree/field[@name='product_qty']" position="after">
+				<field name="secondary_quantity" groups="secondary_uom_mrp_app.group_secondary_uom"/>
+				<field name="secondary_uom_id" groups="secondary_uom_mrp_app.group_secondary_uom"/>
+			</xpath>
+		</field>
+	</record>
+
+	<!-- mo lines -->
+	<record id="mrp_production_form_view_inherit" model="ir.ui.view">
+		<field name="name">mrp.production.form</field>
+		<field name="model">mrp.production</field>
+		<field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+		<field name="arch" type="xml">
+			<xpath expr="//notebook/page[@name='components']/field[@name='move_raw_ids']/tree/field[@name='product_uom']" position="after">
+				<field name="secondary_quantity" force_save="1" />
+				<field name="secondary_uom_id" force_save="1" />
+			</xpath>
+
+		</field>
+	</record>
+	</data>
+</odoo>

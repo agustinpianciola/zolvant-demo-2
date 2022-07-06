@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<!-- mrp  quatation-->
+		<template id="report_purchase_inherit" inherit_id="mrp.report_mrporder">
+			<xpath expr="//table[1]/thead/tr/th[3]" position="after">
+				<th class="text-right"><span>Secondary Qty</span></th>
+			</xpath>
+
+			<xpath expr="//table[1]/tbody[1]//tr//td[3]" position="after">
+				<td class="text-right">
+					<span t-field="raw_line.secondary_quantity" groups="secondary_uom_mrp_app.group_secondary_uom"/>
+				</td>
+			</xpath>
+		</template>
+	</data>
+</odoo>
